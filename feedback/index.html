@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قيّمنا | كريم للتموين</title>
+<meta name="description" content="رأيك بيهمّنا. قيّم كريم للتموين وشوف شو قالوا الزباين.">
+<meta property="og:title" content="قيّم كريم للتموين ⭐">
+<meta property="og:description" content="رأيك بيهمّنا. عطينا تقييمك بثواني.">
+<meta property="og:image" content="../assets/heropost.jpg">
+<link rel="icon" href="../assets/logo.jpg">
+<meta name="theme-color" content="#15110f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--red:#b8312f;--red2:#ef4b3f;--yl:#ffd23f;--bg:#15110f;--card:#1f1a18;--card2:#2a2320;--ink:#f4ece7;--mute:#b5a59e;--line:rgba(255,255,255,.09);
+  --head:"Lalezar","Almarai",system-ui,sans-serif;--body:"Almarai",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.7;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 80% -10%,rgba(184,49,47,.35),transparent 45%),radial-gradient(circle at 0% 100%,rgba(255,210,63,.08),transparent 40%)}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+.wrap{width:min(720px,100% - 32px);margin-inline:auto}
+.top{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--head);font-size:21px;color:var(--red2)}
+.brand img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--red)}
+.back{font-size:14px;font-weight:700;color:var(--mute);border:1px solid var(--line);padding:7px 14px;border-radius:999px}
+.hero{text-align:center;padding:26px 0 8px}
+.hero h1{font-family:var(--head);font-weight:400;font-size:clamp(40px,10vw,64px);line-height:1.15}
+.hero h1 em{font-style:normal;color:var(--yl)}
+.hero p{color:var(--mute);font-size:17px;margin-top:4px}
+.stats{display:flex;justify-content:center;align-items:center;gap:14px;margin:18px auto 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px 20px;width:max-content;max-width:100%}
+.stats .avg{font-family:var(--head);font-size:44px;line-height:1;color:var(--yl);direction:ltr}
+.stats .st{color:var(--yl);font-size:20px;letter-spacing:2px;direction:ltr}
+.stats small{display:block;color:var(--mute);font-size:13px;font-weight:700}
+
+.box{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:26px 20px;margin-top:26px;position:relative;overflow:hidden}
+.box::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,var(--red),var(--yl))}
+.ask{font-family:var(--head);font-weight:400;font-size:clamp(28px,7vw,40px);line-height:1.2;text-align:center}
+.ask em{font-style:normal;color:var(--red2)}
+.lbl{display:block;font-weight:800;font-size:15px;margin:20px 0 8px}
+.stars{display:flex;justify-content:center;gap:6px;direction:ltr;margin-top:16px}
+.stars button{background:none;border:0;cursor:pointer;width:52px;height:52px;display:grid;place-items:center;transition:transform .15s}
+.stars button:active{transform:scale(.85)}
+.stars svg{width:46px;height:46px;fill:var(--card2);stroke:#4a3d38;stroke-width:1.5;transition:fill .2s,stroke .2s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.stars button.on svg{fill:var(--yl);stroke:#c99a00;transform:scale(1.08)}
+.rtxt{text-align:center;font-family:var(--head);font-size:22px;color:var(--yl);min-height:34px;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s}
+.chips button.on{background:var(--red);border-color:var(--red);color:#fff}
+input[type=text],textarea{width:100%;background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:16px;outline:none;transition:border-color .2s}
+input[type=text]:focus,textarea:focus{border-color:var(--yl)}
+textarea{min-height:110px;resize:vertical}
+.cnt{display:block;text-align:left;font-size:12px;color:var(--mute);margin-top:4px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.send{width:100%;margin-top:20px;background:var(--red);color:#fff;border:0;border-radius:16px;padding:16px;font-weight:800;font-size:18px;cursor:pointer;box-shadow:0 6px 0 #7e1f1d;transition:transform .15s,opacity .2s}
+.send:active{transform:translateY(3px);box-shadow:0 3px 0 #7e1f1d}
+.send[disabled]{opacity:.45;cursor:not-allowed}
+.err{color:#ff8a80;font-weight:700;font-size:14px;text-align:center;margin-top:10px;min-height:22px}
+.thanks{display:none;text-align:center;padding:10px 0}
+.thanks .big{font-size:70px;line-height:1;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+.thanks h2{font-family:var(--head);font-weight:400;font-size:36px;margin-top:8px}
+.thanks p{color:var(--mute)}
+.thanks a{display:inline-block;margin-top:16px;background:var(--yl);color:#2a1410;font-weight:800;padding:12px 20px;border-radius:14px}
+@keyframes pop{from{transform:scale(0) rotate(-30deg)}}
+.box.done form{display:none}.box.done .thanks{display:block}
+
+.list-h{display:flex;align-items:baseline;justify-content:space-between;margin:44px 0 14px}
+.list-h h2{font-family:var(--head);font-weight:400;font-size:36px}
+.list-h small{color:var(--mute);font-weight:700}
+.reviews{display:grid;gap:12px}
+.rv{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;animation:in .5s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.rv .hd{display:flex;align-items:center;gap:10px}
+.rv .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--head);font-size:20px;background:var(--red);color:#fff;flex:none}
+.rv .nm{font-weight:800}
+.rv .dt{font-size:12px;color:var(--mute)}
+.rv .st{margin-inline-start:auto;color:var(--yl);direction:ltr;letter-spacing:1px;white-space:nowrap}
+.rv .tp{display:inline-block;margin-top:10px;font-size:12px;font-weight:800;background:var(--card2);border-radius:999px;padding:3px 10px;color:var(--mute)}
+.rv p{margin-top:8px;white-space:pre-wrap;word-break:break-word}
+.rv.mine{border-color:rgba(255,210,63,.4)}
+.empty{text-align:center;color:var(--mute);background:var(--card);border:1px dashed rgba(255,255,255,.15);border-radius:20px;padding:30px 16px}
+.empty b{display:block;font-family:var(--head);font-weight:400;font-size:26px;color:var(--ink);margin-bottom:4px}
+.more{display:block;margin:16px auto 0;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:10px 20px;font-weight:800;cursor:pointer}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:40px 0 calc(30px + env(safe-area-inset-bottom))}
+footer a{color:var(--yl);font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../"><img src="../assets/logo.jpg" alt="">كريم للتموين</a>
+    <a class="back" href="../">← الموقع</a>
+  </div>
+
+  <div class="hero">
+    <h1>رأيك <em>بيهمّنا.</em></h1>
+    <p>قلّنا كيف كانت تجربتك بكريم للتموين.</p>
+    <div class="stats" id="stats" hidden><div class="avg" id="avg">0.0</div><div><div class="st" id="avgSt"></div><small id="cnt">0 تقييم</small></div></div>
+  </div>
+
+  <div class="box" id="box">
+    <form id="f" novalidate>
+      <h2 class="ask">بعدك ما قيّمتنا؟<br><em>قيّمنا هلّق!</em></h2>
+      <div class="stars" id="stars" role="radiogroup" aria-label="التقييم"></div>
+      <div class="rtxt" id="rtxt"></div>
+
+      <span class="lbl">عن شو بدّك تحكي؟</span>
+      <div class="chips" id="topics"></div>
+
+      <label class="lbl" for="msg">رأيك</label>
+      <textarea id="msg" maxlength="400" placeholder="شو عجبك؟ شو منقدر نحسّن؟"></textarea>
+      <span class="cnt"><span id="mc">0</span>/400</span>
+
+      <label class="lbl" for="nm">اسمك <small style="color:var(--mute);font-weight:400">(اختياري)</small></label>
+      <input type="text" id="nm" maxlength="30" placeholder="مثلاً: أبو محمد" autocomplete="given-name">
+      <input type="text" class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button class="send" id="send" type="submit" disabled>ابعت تقييمك ⭐</button>
+      <div class="err" id="err"></div>
+    </form>
+    <div class="thanks" id="thanks">
+      <div class="big">🙏</div>
+      <h2>شكراً إلك!</h2>
+      <p>وصلنا تقييمك. خلّي عينك على كريم 👀</p>
+      <a href="../">رجوع عالموقع</a>
+    </div>
+  </div>
+
+  <div class="list-h"><h2>شو قالوا الزباين</h2><small id="lc"></small></div>
+  <div class="reviews" id="list"></div>
+  <button class="more" id="more" hidden>شوف أكتر</button>
+</div>
+
+<footer>كريم للتموين · طريق الجديدة، قصقص · <a href="tel:+96181714038">ديليفري 81 714 038</a></footer>
+
+<script>
+(() => {
+  /* ===== Paste the Google Apps Script web-app URL here to share reviews between all phones ===== */
+  const API = '';
+  /* ========================================================================================== */
+
+  const TOPICS = ['المحل', 'الأسعار والعروض', 'النضافة', 'الموظفين', 'الديليفري', 'تتبيلة كريم'];
+  const WORDS = ['', 'سيّئ 😞', 'مش كتير 😕', 'منيح 🙂', 'كتير منيح 😃', 'ممتاز! 🔥'];
+  const LS_DONE = 'karim_fb_done', LS_LOCAL = 'karim_fb_local';
+  const $ = id => document.getElementById(id);
+  const ls = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  const starSvg = '<svg viewBox="0 0 24 24"><path d="M12 2.6l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z" stroke-linejoin="round"/></svg>';
+
+  let rating = 0, topic = '';
+  const stars = $('stars');
+  stars.innerHTML = [1, 2, 3, 4, 5].map(n => `<button type="button" role="radio" aria-label="${n} نجوم" data-n="${n}">${starSvg}</button>`).join('');
+  const paint = n => stars.querySelectorAll('button').forEach(b => { b.classList.toggle('on', +b.dataset.n <= n); b.setAttribute('aria-checked', +b.dataset.n === n); });
+  stars.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; rating = +b.dataset.n; paint(rating); $('rtxt').textContent = WORDS[rating]; check(); });
+  stars.addEventListener('mouseover', e => { const b = e.target.closest('button'); if (b) paint(+b.dataset.n); });
+  stars.addEventListener('mouseleave', () => paint(rating));
+
+  $('topics').innerHTML = TOPICS.map(t => `<button type="button">${t}</button>`).join('');
+  $('topics').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const on = !b.classList.contains('on'); $('topics').querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.toggle('on', on); topic = on ? b.textContent : ''; });
+
+  $('msg').addEventListener('input', () => { $('mc').textContent = $('msg').value.length; check(); });
+  function check() { $('send').disabled = !rating; }
+
+  /* ----- reviews list ----- */
+  let all = [], shown = 0;
+  const stStr = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+  const fmtDate = t => { try { return new Date(t).toLocaleDateString('ar-LB', { day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return ''; } };
+  function card(r) {
+    const el = document.createElement('div'); el.className = 'rv' + (r.mine ? ' mine' : '');
+    const name = (r.name || '').trim() || 'زبون';
+    el.innerHTML = '<div class="hd"><div class="av"></div><div><div class="nm"></div><div class="dt"></div></div><div class="st"></div></div>';
+    el.querySelector('.av').textContent = name.charAt(0);
+    el.querySelector('.nm').textContent = name;
+    el.querySelector('.dt').textContent = fmtDate(r.time);
+    el.querySelector('.st').textContent = stStr(Math.max(1, Math.min(5, +r.rating || 0)));
+    if (r.topic) { const t = document.createElement('span'); t.className = 'tp'; t.textContent = r.topic; el.appendChild(t); }
+    if (r.msg) { const p = document.createElement('p'); p.textContent = r.msg; el.appendChild(p); }
+    return el;
+  }
+  function render(reset) {
+    const list = $('list');
+    if (reset) { list.innerHTML = ''; shown = 0; }
+    if (!all.length) { list.innerHTML = '<div class="empty"><b>بعد ما في تقييمات.</b>كون أوّل واحد بيقيّم كريم للتموين! ⭐</div>'; $('more').hidden = true; $('stats').hidden = true; $('lc').textContent = ''; return; }
+    const next = all.slice(shown, shown + 10); next.forEach(r => list.appendChild(card(r))); shown += next.length;
+    $('more').hidden = shown >= all.length;
+    const avg = all.reduce((s, r) => s + (+r.rating || 0), 0) / all.length;
+    $('avg').textContent = avg.toFixed(1); $('avgSt').textContent = stStr(Math.round(avg));
+    $('cnt').textContent = all.length + ' تقييم'; $('lc').textContent = all.length + ' تقييم'; $('stats').hidden = false;
+  }
+  $('more').addEventListener('click', () => render(false));
+
+  const local = () => { try { return JSON.parse(ls.get(LS_LOCAL) || '[]'); } catch (e) { return []; } };
+  async function load() {
+    let rows = [];
+    if (API) {
+      try { const r = await fetch(API + (API.includes('?') ? '&' : '?') + 'list=1', { cache: 'no-store' }); rows = await r.json(); if (!Array.isArray(rows)) rows = []; } catch (e) { rows = []; }
+      const mine = local().filter(m => !rows.some(r => r.time === m.time && r.msg === m.msg)).filter(m => Date.now() - m.time < 6e4);
+      rows = mine.concat(rows);
+    } else rows = local();
+    all = rows.sort((a, b) => b.time - a.time); render(true);
+  }
+
+  /* ----- submit ----- */
+  $('f').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!rating || $('hp').value) return;
+    const r = { time: Date.now(), rating, topic, msg: $('msg').value.trim().slice(0, 400), name: $('nm').value.trim().slice(0, 30), mine: true };
+    $('send').disabled = true; $('send').textContent = 'عم نبعت…'; $('err').textContent = '';
+    try {
+      if (API) await fetch(API, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(r) });
+      const l = local(); l.unshift(r); ls.set(LS_LOCAL, JSON.stringify(l.slice(0, 20)));
+      ls.set(LS_DONE, '1');
+      all.unshift(r); render(true);
+      $('box').classList.add('done'); $('box').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      $('err').textContent = 'ما زبط الإرسال، جرّب كمان مرّة.'; $('send').disabled = false; $('send').textContent = 'ابعت تقييمك ⭐';
+    }
+  });
+
+  if (ls.get(LS_DONE)) {
+    $('f').querySelector('.ask').innerHTML = 'بدّك تقيّمنا<br><em>كمان مرّة؟</em>';
+  }
+  load();
+})();
+</script>
+</body>
+</html>
