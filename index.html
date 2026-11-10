@@ -176,6 +176,13 @@ footer .brand{color:#fff}
 .jm .jc{padding:0;gap:0}
 .jc .ph{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
 .jc .bd{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px}
+/* fresh (cheese video) */
+.fresh{position:relative;overflow:hidden;min-height:min(78svh,640px);display:flex;align-items:flex-end;margin:20px 0}
+.fresh video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.fresh::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,10,9,.92) 0%,rgba(13,10,9,.55) 40%,rgba(13,10,9,.05) 75%)}
+.fresh .wrap{position:relative;z-index:2;padding:0 0 56px}
+.fresh .h2{font-size:clamp(52px,10vw,120px)}
+.fresh p{font-size:clamp(17px,2vw,21px);color:#e9dfda;margin:6px 0 20px;max-width:34ch}
 /* jumla / mfrak */
 .jm{display:grid;gap:16px;margin-top:30px}
 @media (min-width:820px){.jm{grid-template-columns:1fr 1fr}}
@@ -285,6 +292,15 @@ footer{background:#0d0a09}
   </div>
 </section>
 
+<section class="fresh" id="fresh">
+  <video id="cv" src="assets/cheese.mp4" poster="assets/cheese.jpg" muted loop playsinline preload="metadata"></video>
+  <div class="wrap">
+    <h2 class="h2 rv">طازة <em>كل يوم.</em></h2>
+    <p class="rv">أجبان وألبان ومرتديلا عالوقية.</p>
+    <a class="btn wa rv" data-wa-f href="#" target="_blank" rel="noopener">اطلب عالواتساب</a>
+  </div>
+</section>
+
 <section class="sec" id="tour" style="padding-top:10px">
   <div class="wrap">
     <h2 class="h2 rv">جولة <em>بالمحل.</em></h2>
@@ -351,6 +367,9 @@ footer{background:#0d0a09}
     ${w ? `<a class="ib g" href="${wa(n, 'مرحبا كريم!')}" target="_blank" rel="noopener" aria-label="واتساب">${ic.wa}</a>` : ''}<a class="ib" href="tel:+961${n}" aria-label="اتصل">${ic.call}</a></div></div>`).join('');
   document.querySelector('[data-wa-m]').href = wa('81714038', 'مرحبا كريم! بدّي اطلب ديليفري');
   document.querySelector('[data-wa-j]').href = wa('81714038', 'مرحبا كريم! عندي محل وبدّي اسأل عن أسعار الجملة');
+  document.querySelector('[data-wa-f]').href = wa('81714038', 'مرحبا كريم! بدّي اطلب أجبان وألبان');
+  const cv = document.getElementById('cv'); cv.playbackRate = .8;
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { cv.playbackRate = .8; cv.play().catch(() => {}); } else cv.pause(); }), { threshold: .2 }).observe(cv);
   document.querySelector('[data-wa-c]').href = wa('81896302', 'مرحبا تتبيلة كريم! بدّي اطلب دجاج 🐔');
 
   /* ---------- eye follows ---------- */
