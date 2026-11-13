@@ -112,6 +112,17 @@ svg{flex:none}
 .rate a{flex:none;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:10px 16px;border-radius:12px}
 
 
+/* offers teaser */
+.oteaser{position:relative;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;background:var(--ink);color:#fff;border-radius:24px;padding:20px;overflow:hidden;isolation:isolate}
+.oteaser::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(120% 120% at 100% 0,rgba(255,0,80,.35),transparent 55%),radial-gradient(100% 100% at 0 100%,rgba(0,242,234,.25),transparent 55%)}
+.oteaser .play{width:64px;height:64px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;box-shadow:-3px 0 0 #00f2ea,3px 0 0 #ff0050;animation:pulse 2.4s infinite}
+.oteaser .play svg{width:26px;height:26px;margin-inline-start:3px}
+.oteaser small{color:var(--yl);font-weight:800;font-size:13px}
+.oteaser b{display:block;font-family:var(--head);font-weight:400;font-size:clamp(28px,7vw,40px);line-height:1.15}
+.oteaser p{color:rgba(255,255,255,.75);font-size:14px}
+.oteaser .go{grid-column:1/-1;text-align:center;background:var(--yl);color:var(--ink);font-weight:800;border-radius:14px;padding:12px}
+@media (min-width:860px){.oteaser{grid-template-columns:auto 1fr auto;padding:26px}.oteaser .go{grid-column:auto;padding:12px 22px}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 /* offers */
 .ohead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .ohead small{flex:none;font-size:12px;font-weight:700;color:var(--mute);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
@@ -134,6 +145,15 @@ svg{flex:none}
 .of.in .pc{animation:pop .5s .3s cubic-bezier(.2,1.6,.4,1) both}
 .chick .more{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--yl);color:var(--ink);font-weight:800;border-radius:14px;min-height:50px}
 @media (min-width:860px){.chick .more{grid-column:1/-1}}
+
+.obanner{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;background:var(--yl);color:var(--ink);border-radius:24px;padding:18px;box-shadow:0 18px 30px -20px rgba(154,107,0,.7);transition:transform .2s}
+.obanner:active{transform:scale(.98)}
+.obanner .pct{flex:none;width:62px;height:62px;border-radius:18px;background:var(--red);color:#fff;display:grid;place-items:center;font-family:var(--head);font-size:38px;line-height:1;transform:rotate(-8deg);animation:wig 3s 1.5s infinite}
+.obanner b{display:block;font-family:var(--head);font-weight:400;font-size:30px;line-height:1.1}
+.obanner p{font-size:14px;color:#5e4a00}
+.obanner .go{margin-inline-start:auto;flex:none;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:10px 14px;border-radius:12px}
+.obanner::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-120%);animation:shine 4.5s 2s infinite;pointer-events:none}
+@media (max-width:520px){.obanner{flex-wrap:wrap}.obanner .go{width:100%;text-align:center;margin:4px 0 0}}
 
 /* location */
 .loc{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
@@ -304,9 +324,11 @@ a[data-wa] svg{animation:hop 4s 2.6s infinite}
 </div></section>
 
 <section class="sec" id="offers"><div class="wrap">
-  <div class="ohead"><h2 class="h2 rv">عروضات <em>كريم.</em></h2><small id="until"></small></div>
-  <p class="lead rv">عروض السوبرماركت هالأسبوع. كبوس على أي عرض لتطلبو عالواتساب.</p>
-  <div class="offers" id="offersGrid"></div>
+  <a class="oteaser rv" href="offers/">
+    <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+    <div><small>عروضات كريم</small><b>آخر العروض بالفيديو.</b><p>عبد الهادي بيقلك شو العروض الجديدة كل أسبوع.</p></div>
+    <span class="go">شوف العروض ←</span>
+  </a>
 </div></section>
 
 <section class="sec"><div class="wrap">
@@ -346,11 +368,8 @@ a[data-wa] svg{animation:hop 4s 2.6s infinite}
   <a class="m" href="#find"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>الموقع</a>
 </nav>
 
-<script src="assets/offers.js?v=1"></script>
 <script>
 (() => {
-  renderOffers(document.getElementById('offersGrid'), KARIM_OFFERS.market, '81714038', 'مرحبا كريم! بدّي عرض: ');
-  document.getElementById('until').textContent = KARIM_OFFERS.until;
   document.querySelectorAll('[data-wa]').forEach(a => a.href = 'https://wa.me/961' + a.dataset.wa + '?text=' + encodeURIComponent(a.dataset.msg || 'مرحبا!'));
   const v = document.getElementById('vid'); if (v) { v.playbackRate = .85; v.addEventListener('play', () => v.playbackRate = .85); }
 
