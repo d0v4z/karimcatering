@@ -111,6 +111,30 @@ svg{flex:none}
 .rate b{font-size:16px}
 .rate a{flex:none;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:10px 16px;border-radius:12px}
 
+
+/* offers */
+.ohead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.ohead small{flex:none;font-size:12px;font-weight:700;color:var(--mute);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.offers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+@media (min-width:860px){.offers{grid-template-columns:repeat(3,1fr);gap:14px}}
+.of{position:relative;display:flex;flex-direction:column;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 14px 14px;overflow:hidden;transition:transform .2s,box-shadow .3s}
+.of:active{transform:scale(.97)}
+@media (hover:hover){.of:hover{transform:translateY(-3px);box-shadow:0 18px 30px -18px rgba(43,23,18,.4)}}
+.of .pc{position:absolute;top:0;inset-inline-start:0;background:var(--red);color:#fff;font-weight:800;font-size:14px;padding:6px 12px;border-end-end-radius:16px}
+.of .tg{align-self:flex-end;background:var(--yl);color:var(--ink);font-weight:800;font-size:11px;padding:2px 8px;border-radius:8px;margin-bottom:4px}
+.of:not(:has(.tg)) h3{margin-top:22px}
+.of h3{font-size:16px;font-weight:800;line-height:1.35}
+.of p{font-size:13px;color:var(--mute)}
+.of .pr{display:flex;align-items:baseline;gap:8px;margin-top:8px}
+.of .pr b{font-family:var(--head);font-weight:400;font-size:32px;line-height:1;color:var(--red)}
+.of .pr s{font-size:14px;color:var(--mute)}
+.of .go{margin-top:10px;text-align:center;font-weight:800;font-size:13px;background:#e6f9ee;color:#0b6b35;border-radius:12px;padding:8px}
+.of::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,210,63,.25) 50%,transparent 60%);transform:translateX(-120%);pointer-events:none}
+.of.in::after{animation:shine 5s calc(var(--i,0)*.4s + 1s) infinite}
+.of.in .pc{animation:pop .5s .3s cubic-bezier(.2,1.6,.4,1) both}
+.chick .more{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--yl);color:var(--ink);font-weight:800;border-radius:14px;min-height:50px}
+@media (min-width:860px){.chick .more{grid-column:1/-1}}
+
 /* location */
 .loc{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
 .loc img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 40%}
@@ -279,11 +303,18 @@ a[data-wa] svg{animation:hop 4s 2.6s infinite}
   </div>
 </div></section>
 
+<section class="sec" id="offers"><div class="wrap">
+  <div class="ohead"><h2 class="h2 rv">عروضات <em>كريم.</em></h2><small id="until"></small></div>
+  <p class="lead rv">عروض السوبرماركت هالأسبوع. كبوس على أي عرض لتطلبو عالواتساب.</p>
+  <div class="offers" id="offersGrid"></div>
+</div></section>
+
 <section class="sec"><div class="wrap">
   <div class="chick rv">
     <img src="assets/tatbileh.jpg" alt="تتبيلة كريم" loading="lazy">
     <div><h3>تتبيلة كريم</h3><p>محل الدجاج تبع كريم. دجاج طازة ومتبّل، جاهز للشوي.</p><span class="mon">يوم الاثنين من عنّا غير</span></div>
     <div class="ctas"><a class="btn red" href="tel:+96181896302"><span class="num">81 896 302</span></a><a class="btn wa" data-wa="81896302" data-msg="مرحبا تتبيلة كريم! بدّي اطلب دجاج" href="#" target="_blank" rel="noopener">واتساب</a></div>
+    <a class="more" href="tatbelitkarim/">شوف عروض الدجاج ←</a>
   </div>
 </div></section>
 
@@ -315,8 +346,11 @@ a[data-wa] svg{animation:hop 4s 2.6s infinite}
   <a class="m" href="#find"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>الموقع</a>
 </nav>
 
+<script src="assets/offers.js?v=1"></script>
 <script>
 (() => {
+  renderOffers(document.getElementById('offersGrid'), KARIM_OFFERS.market, '81714038', 'مرحبا كريم! بدّي عرض: ');
+  document.getElementById('until').textContent = KARIM_OFFERS.until;
   document.querySelectorAll('[data-wa]').forEach(a => a.href = 'https://wa.me/961' + a.dataset.wa + '?text=' + encodeURIComponent(a.dataset.msg || 'مرحبا!'));
   const v = document.getElementById('vid'); if (v) { v.playbackRate = .85; v.addEventListener('play', () => v.playbackRate = .85); }
 
