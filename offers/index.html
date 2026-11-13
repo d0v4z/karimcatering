@@ -62,6 +62,9 @@ svg{flex:none}
 .vids::-webkit-scrollbar{display:none}
 .vid{flex:0 0 78%;max-width:340px;scroll-snap-align:start;border-radius:22px;overflow:hidden;background:#111;aspect-ratio:9/16;position:relative;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
 .vid iframe{width:100%;height:100%;border:0}
+.vid video{width:100%;height:100%;object-fit:cover}
+.vid .snd{position:absolute;inset-inline:12px;bottom:12px;z-index:2;min-height:46px;border:0;border-radius:14px;background:rgba(255,255,255,.92);color:#111;font:inherit;font-weight:800;font-size:15px;box-shadow:-3px 0 0 var(--tt1),3px 0 0 var(--tt2);cursor:pointer}
+.vid .snd.on{background:#111;color:#fff}
 .vid .new{position:absolute;top:10px;inset-inline-start:10px;z-index:2;background:var(--tt2);color:#fff;font-weight:800;font-size:12px;padding:3px 10px;border-radius:999px;pointer-events:none}
 @media (min-width:860px){.vid{flex-basis:300px}}
 .feed{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:10px;min-height:200px;overflow:hidden}
@@ -168,21 +171,30 @@ footer a{color:var(--red);font-weight:700}
   <a class="m" href="./"><img src="assets/logo.jpg" alt="" style="width:24px;height:24px;border-radius:50%">الرئيسية</a>
 </nav>
 
-<script src="assets/offers.js?v=2"></script>
+<script src="assets/offers.js?v=3"></script>
 <script>
 (() => {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
   const K = window.KARIM_OFFERS, user = K.tiktokUser || 'abedulhadihalabi', profile = 'https://www.tiktok.com/@' + user;
   document.getElementById('follow').href = profile; document.getElementById('ttFoot').href = profile;
   document.querySelectorAll('[data-wa]').forEach(a => a.href = 'https://wa.me/961' + a.dataset.wa + '?text=' + encodeURIComponent(a.dataset.msg || 'مرحبا!'));
-  renderOffers(document.getElementById('offersGrid'), K.market, '81714038', 'مرحبا كريم! بدّي عرض: ');
-  document.getElementById('until').textContent = K.until;
-
-  /* pinned offer videos (links in assets/offers.js) */
-  const ids = (K.videos || []).map(u => (String(u).match(/video\/(\d+)/) || [])[1] || (/^\d+$/.test(u) ? u : null)).filter(Boolean);
-  if (ids.length) {
-    const v = document.getElementById('vids'); v.hidden = false;
-    v.innerHTML = ids.map((id, i) => `<div class="vid">${i === 0 ? '<span class="new">جديد</span>' : ''}<iframe src="https://www.tiktok.com/player/v1/${id}?music_info=0&description=0&rel=0" loading="lazy" allow="fullscreen; autoplay; encrypted-media" allowfullscreen title="فيديو عروض كريم"></iframe></div>`).join('');
-  }
+  loadOffers(D => {
+    renderOffers(document.getElementById('offersGrid'), D.market, '81714038', 'مرحبا كريم! بدّي عرض: ');
+    document.getElementById('until').textContent = D.until || '';
+    /* offer videos: newest first. Ones saved on the site play directly; the rest use TikTok's player */
+    const ids = (D.videos || []).map(videoId).filter(Boolean), v = document.getElementById('vids');
+    v.hidden = !ids.length;
+    v.innerHTML = ids.map((id, i) => {
+      const local = (window.KARIM_LOCAL_VIDEOS || {})[id];
+      return `<div class="vid${local ? ' loc' : ''}">${i === 0 ? '<span class="new">جديد</span>' : ''}${local
+        ? `<video src="${local}.mp4" poster="${local}.jpg" playsinline muted loop autoplay preload="metadata"></video><button class="snd" aria-label="صوت">اسمع العرض</button>`
+        : `<iframe src="https://www.tiktok.com/player/v1/${id}?music_info=0&description=0&rel=0" loading="lazy" allow="fullscreen; autoplay; encrypted-media" allowfullscreen title="فيديو عروض كريم"></iframe>`}</div>`; }).join('');
+    document.querySelectorAll('.renderOffers-rv, #offersGrid .rv').forEach(el => io.observe(el));
+  });
+  document.getElementById('vids').addEventListener('click', e => {
+    const b = e.target.closest('.snd'); if (!b) return; const vd = b.parentElement.querySelector('video');
+    vd.muted = !vd.muted; if (!vd.muted) { vd.currentTime = 0; vd.play(); } b.textContent = vd.muted ? 'اسمع العرض' : 'سكّت الصوت'; b.classList.toggle('on', !vd.muted);
+  });
 
   /* latest videos from the TikTok profile: loads when you scroll near it */
   const feed = document.getElementById('feed');
@@ -198,7 +210,6 @@ footer a{color:var(--red);font-weight:700}
   new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); loadFeed(); } }, { rootMargin: '400px' }).observe(feed);
 
   requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('ld')));
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
 })();
 </script>

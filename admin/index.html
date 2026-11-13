@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<base href="../">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>لوحة التحكم | كريم للتموين</title>
+<link rel="icon" href="assets/logo.jpg">
+<meta name="theme-color" content="#2b1712">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f1ea;--card:#fff;--red:#b8312f;--ink:#2b1712;--mute:#7b675f;--line:#e5dcd0;--yl:#ffd23f;--green:#1f7a4d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Almarai",system-ui,sans-serif;line-height:1.6;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+.wrap{width:min(760px,100% - 24px);margin-inline:auto}
+.num{direction:ltr;unicode-bidi:isolate}
+[hidden]{display:none!important}
+
+.hd{background:var(--ink);color:#fff;position:sticky;top:0;z-index:20}
+.hd .wrap{display:flex;align-items:center;gap:10px;height:60px}
+.hd img{width:38px;height:38px;border-radius:50%}
+.hd b{font-size:17px}
+.hd small{display:block;font-size:12px;color:rgba(255,255,255,.6);line-height:1.2}
+.hd .out{margin-inline-start:auto;color:rgba(255,255,255,.75);font-size:13px;border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:6px 10px}
+
+/* login */
+.login{min-height:80vh;display:grid;place-items:center}
+.lbox{width:min(380px,100%);background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;text-align:center}
+.lbox img{width:72px;height:72px;border-radius:50%;margin:0 auto 10px}
+.lbox h1{font-size:22px}
+.lbox p{color:var(--mute);font-size:14px;margin-bottom:16px}
+.in{width:100%;height:50px;border:1.5px solid var(--line);border-radius:14px;padding:0 14px;background:#fff;font-size:16px;outline:none}
+.in:focus{border-color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 18px;border-radius:14px;font-weight:800;font-size:16px}
+.btn.dk{background:var(--ink);color:#fff}
+.btn.rd{background:var(--red);color:#fff}
+.btn.ol{border:1.5px solid var(--line);background:#fff}
+.btn.full{width:100%}
+.err{color:var(--red);font-size:14px;min-height:22px;margin-top:8px}
+
+/* tabs */
+.tabs{display:flex;gap:6px;margin:16px 0 14px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:10px 14px;border-radius:12px;background:#fff;border:1.5px solid var(--line);font-weight:800;font-size:14px}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab i{font-style:normal;font-size:12px;background:var(--yl);color:var(--ink);border-radius:999px;padding:0 7px;margin-inline-start:4px}
+.panel h2{font-size:20px;margin-bottom:4px}
+.panel .help{color:var(--mute);font-size:14px;margin-bottom:14px}
+
+/* videos */
+.add{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:6px}
+.vrow{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;margin-top:8px}
+.vrow .th{width:54px;height:76px;border-radius:10px;background:#111 center/cover;flex:none;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800;text-align:center}
+.vrow .tx{flex:1;min-width:0}
+.vrow .tx b{display:block;font-size:15px}
+.vrow .tx>span{display:block;font-size:12px;color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;text-align:right}
+.vrow .first{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:800;border-radius:999px;padding:1px 8px;margin-inline-start:6px}
+
+/* offers */
+.until{margin-bottom:12px}
+.until label{display:block;font-size:13px;font-weight:800;margin-bottom:4px}
+.orow{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;margin-top:10px}
+.orow .top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.orow .top b{font-size:13px;color:var(--mute)}
+.orow .top .pc{background:var(--red);color:#fff;font-size:12px;font-weight:800;border-radius:999px;padding:1px 8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid .wide{grid-column:1/-1}
+.f label{display:block;font-size:12px;color:var(--mute);font-weight:700;margin-bottom:2px}
+.f .in{height:44px;font-size:15px}
+.ctl{display:flex;gap:4px;margin-inline-start:auto}
+.ic{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;font-size:15px;font-weight:800}
+.ic.del{color:var(--red)}
+.ic:disabled{opacity:.3}
+.addo{width:100%;margin-top:12px;border:2px dashed var(--line);background:transparent;color:var(--ink)}
+.empty{text-align:center;color:var(--mute);font-size:14px;padding:22px;background:#fff;border:1px dashed var(--line);border-radius:16px;margin-top:8px}
+
+/* save bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
+.bar .wrap{display:flex;align-items:center;gap:10px}
+.bar .st{flex:1;font-size:13px;color:var(--mute);line-height:1.4}
+.bar .st b{display:block;color:var(--ink);font-size:14px}
+.bar .st.dirty b{color:var(--red)}
+.toast{position:fixed;left:50%;top:76px;transform:translateX(-50%);z-index:30;background:var(--green);color:#fff;font-weight:800;font-size:14px;padding:10px 18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.toast.bad{background:var(--red)}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.links a{font-size:13px;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="hd"><div class="wrap"><img src="assets/logo.jpg" alt=""><div><b>كريم للتموين</b><small>لوحة التحكم · العروض والفيديوهات</small></div><button class="out" id="out" hidden>خروج</button></div></header>
+
+<section class="login wrap" id="login">
+  <form class="lbox" id="lform">
+    <img src="assets/logo.jpg" alt="">
+    <h1>أهلا كريم</h1>
+    <p>اكتب كلمة السر لتعدّل العروض.</p>
+    <input class="in" id="pass" type="password" autocomplete="current-password" placeholder="كلمة السر">
+    <button class="btn dk full" style="margin-top:10px" id="lbtn">دخول</button>
+    <div class="err" id="lerr"></div>
+  </form>
+</section>
+
+<main class="wrap" id="app" hidden>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-t="videos">فيديوهات تيك توك<i id="nV">0</i></button>
+    <button class="tab" data-t="market">عروض السوبرماركت<i id="nM">0</i></button>
+    <button class="tab" data-t="chicken">عروض تتبيلة كريم<i id="nC">0</i></button>
+  </div>
+
+  <section class="panel" data-p="videos">
+    <h2>فيديوهات العروض</h2>
+    <p class="help">نزّل عبد الهادي فيديو جديد؟ من تيك توك: Share ← Copy link، وحطّو هون. أوّل فيديو بيطلع "جديد" عالموقع.</p>
+    <div class="add"><input class="in num" id="vlink" placeholder="https://www.tiktok.com/@abedulhadihalabi/video/…" inputmode="url"><button class="btn dk" id="vadd">زيد</button></div>
+    <div class="err" id="verr"></div>
+    <div id="vlist"></div>
+  </section>
+
+  <section class="panel" data-p="market" hidden>
+    <h2>عروض السوبرماركت</h2>
+    <p class="help">بيطلعوا بصفحة <b>العروضات</b>. الأسعار بالدولار. اترك "السعر القديم" فاضي إذا ما في خصم.</p>
+    <div class="until"><label>لحدّ إيمتى العروض؟</label><input class="in" id="until" placeholder="مثلاً: لحدّ آخر الأسبوع أو نفاد الكمية"></div>
+    <div id="mlist"></div>
+    <button class="btn addo" data-add="market">+ زيد عرض</button>
+  </section>
+
+  <section class="panel" data-p="chicken" hidden>
+    <h2>عروض تتبيلة كريم</h2>
+    <p class="help">بيطلعوا بصفحة <b>تتبيلة كريم</b>. الأسعار بالدولار.</p>
+    <div id="clist"></div>
+    <button class="btn addo" data-add="chicken">+ زيد عرض</button>
+  </section>
+
+  <div class="links"><a href="offers/" target="_blank">شوف صفحة العروضات ↗</a><a href="tatbelitkarim/" target="_blank">شوف تتبيلة كريم ↗</a><a href="./" target="_blank">الموقع ↗</a></div>
+</main>
+
+<div class="bar" id="bar" hidden><div class="wrap"><div class="st" id="st"><b>كل شي محفوظ</b><span id="stT"></span></div><button class="btn rd" id="save">احفظ وانشر</button></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/offers.js?v=3"></script>
+<script>
+(() => {
+  const API = window.KARIM_API, $ = s => document.querySelector(s);
+  let pass = '', D = null, dirty = false;
+  const post = body => fetch(API, { method: 'POST', body: JSON.stringify(body) }).then(r => r.json());
+  const toast = (m, bad) => { const t = $('#toast'); t.textContent = m; t.className = 'toast' + (bad ? ' bad' : ''); t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 2600); };
+  const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+  /* login */
+  $('#lform').addEventListener('submit', async e => {
+    e.preventDefault(); const p = $('#pass').value.trim(); if (!p) return;
+    $('#lbtn').disabled = true; $('#lbtn').textContent = '…'; $('#lerr').textContent = '';
+    try { const r = await post({ action: 'check', pass: p }); if (!r.ok) throw 'pass'; pass = p; try { sessionStorage.setItem('karim-admin', p); } catch (e) {} start(); }
+    catch (err) { $('#lerr').textContent = err === 'pass' ? 'كلمة السر غلط.' : 'ما قدرنا نوصل للسيرفر. تأكّد إنو الـ Apps Script محدّث.'; }
+    $('#lbtn').disabled = false; $('#lbtn').textContent = 'دخول';
+  });
+  $('#out').addEventListener('click', () => { try { sessionStorage.removeItem('karim-admin'); } catch (e) {} location.reload(); });
+  try { const p = sessionStorage.getItem('karim-admin'); if (p) { pass = p; start(); } } catch (e) {}
+
+  async function start() {
+    $('#login').hidden = true; $('#app').hidden = false; $('#bar').hidden = false; $('#out').hidden = false;
+    const def = window.KARIM_OFFERS;
+    D = { until: def.until, market: def.market.map(o => ({ ...o })), chicken: def.chicken.map(o => ({ ...o })), videos: def.videos.slice() };
+    render();
+    try { const x = await fetch(API + '?offers=1').then(r => r.json()); if (x && (x.market || x.chicken || x.videos)) { D = { until: x.until || '', market: x.market || [], chicken: x.chicken || [], videos: x.videos || [] }; $('#stT').textContent = x.updated ? 'آخر حفظ: ' + new Date(x.updated).toLocaleString('ar-LB-u-nu-latn', { dateStyle: 'medium', timeStyle: 'short' }) : ''; render(); } }
+    catch (e) { toast('ما قدرنا نجيب آخر نسخة، عم نعرض الأساسية', true); }
+  }
+
+  /* tabs */
+  $('#tabs').addEventListener('click', e => { const b = e.target.closest('.tab'); if (!b) return; document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t === b)); document.querySelectorAll('.panel').forEach(p => p.hidden = p.dataset.p !== b.dataset.t); scrollTo(0, 0); });
+
+  function render() {
+    $('#nV').textContent = D.videos.length; $('#nM').textContent = D.market.length; $('#nC').textContent = D.chicken.length;
+    $('#until').value = D.until || '';
+    $('#vlist').innerHTML = D.videos.length ? D.videos.map((u, i) => { const id = videoId(u), loc = (window.KARIM_LOCAL_VIDEOS || {})[id];
+      return `<div class="vrow"><div class="th" style="${loc ? `background-image:url(${loc}.jpg)` : ''}">${loc ? '' : 'TikTok'}</div>
+        <div class="tx"><b>فيديو ${i + 1}${i === 0 ? '<span class="first">جديد</span>' : ''}</b><span>${esc(u)}</span></div>
+        <div class="ctl"><button class="ic" data-v="up" data-i="${i}" ${i ? '' : 'disabled'} aria-label="لفوق">↑</button><button class="ic" data-v="down" data-i="${i}" ${i < D.videos.length - 1 ? '' : 'disabled'} aria-label="لتحت">↓</button><button class="ic del" data-v="del" data-i="${i}" aria-label="امحي">✕</button></div></div>`; }).join('')
+      : '<div class="empty">ما في فيديوهات. الصفحة رح تعرض آخر فيديوهات التيك توك وحدها.</div>';
+    ['market', 'chicken'].forEach(k => {
+      const L = D[k];
+      $(k === 'market' ? '#mlist' : '#clist').innerHTML = L.length ? L.map((o, i) => {
+        const pc = o.old && o.price && o.old > o.price ? Math.round((1 - o.price / o.old) * 100) : 0;
+        return `<div class="orow" data-k="${k}" data-i="${i}"><div class="top"><b>عرض ${i + 1}</b>${pc ? `<span class="pc num">-${pc}%</span>` : ''}
+          <div class="ctl"><button class="ic" data-o="up" ${i ? '' : 'disabled'} aria-label="لفوق">↑</button><button class="ic" data-o="down" ${i < L.length - 1 ? '' : 'disabled'} aria-label="لتحت">↓</button><button class="ic del" data-o="del" aria-label="امحي">✕</button></div></div>
+          <div class="grid">
+            <div class="f wide"><label>اسم الغرض</label><input class="in" data-f="name" value="${esc(o.name)}" placeholder="مثلاً: زيت دوار الشمس"></div>
+            <div class="f"><label>الحجم / الكمية</label><input class="in" data-f="unit" value="${esc(o.unit)}" placeholder="1.8 ليتر"></div>
+            <div class="f"><label>كلمة صغيرة (اختياري)</label><input class="in" data-f="tag" value="${esc(o.tag)}" placeholder="الأكثر طلباً"></div>
+            <div class="f"><label>السعر الجديد $</label><input class="in num" data-f="price" inputmode="decimal" value="${o.price || ''}" placeholder="3.5"></div>
+            <div class="f"><label>السعر القديم $</label><input class="in num" data-f="old" inputmode="decimal" value="${o.old || ''}" placeholder="4.25"></div>
+          </div></div>`; }).join('') : '<div class="empty">ما في عروض. اكبس "زيد عرض".</div>';
+    });
+  }
+  const mark = () => { dirty = true; $('#st').className = 'st dirty'; $('#st b').textContent = 'في تعديلات ما انحفظت'; };
+
+  /* videos */
+  $('#vadd').addEventListener('click', () => {
+    const u = $('#vlink').value.trim(), id = videoId(u);
+    if (!id) { $('#verr').textContent = 'هيدا مش رابط فيديو تيك توك. لازم يكون فيه /video/ ورقم.'; return; }
+    if (D.videos.some(x => videoId(x) === id)) { $('#verr').textContent = 'هيدا الفيديو موجود.'; return; }
+    $('#verr').textContent = ''; D.videos.unshift(/tiktok\.com/.test(u) ? u.split('?')[0] : id); $('#vlink').value = ''; mark(); render(); toast('انزاد الفيديو. ما تنسى تكبس احفظ');
+  });
+  $('#vlist').addEventListener('click', e => {
+    const b = e.target.closest('[data-v]'); if (!b) return; const i = +b.dataset.i, V = D.videos;
+    if (b.dataset.v === 'del') { if (!confirm('أكيد بدّك تمحي هالفيديو؟')) return; V.splice(i, 1); }
+    if (b.dataset.v === 'up') [V[i - 1], V[i]] = [V[i], V[i - 1]];
+    if (b.dataset.v === 'down') [V[i + 1], V[i]] = [V[i], V[i + 1]];
+    mark(); render();
+  });
+
+  /* offers */
+  document.addEventListener('input', e => {
+    if (e.target.id === 'until') { D.until = e.target.value; mark(); return; }
+    const row = e.target.closest('.orow'); if (!row || !e.target.dataset.f) return;
+    const o = D[row.dataset.k][+row.dataset.i], f = e.target.dataset.f;
+    o[f] = (f === 'price' || f === 'old') ? (parseFloat(e.target.value.replace(',', '.')) || 0) : e.target.value; mark();
+  });
+  document.addEventListener('change', e => { if (e.target.closest('.orow') && (e.target.dataset.f === 'price' || e.target.dataset.f === 'old')) render(); });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-add]'); if (a) { const k = a.dataset.add; D[k].push({ name: '', unit: '', price: 0, old: 0, tag: '' }); mark(); render(); const rows = document.querySelectorAll(`.orow[data-k="${k}"]`); const last = rows[rows.length - 1]; last.scrollIntoView({ block: 'center' }); last.querySelector('input').focus(); return; }
+    const b = e.target.closest('[data-o]'); if (!b) return; const row = b.closest('.orow'), L = D[row.dataset.k], i = +row.dataset.i;
+    if (b.dataset.o === 'del') { if (!confirm('أكيد بدّك تمحي هالعرض؟')) return; L.splice(i, 1); }
+    if (b.dataset.o === 'up') [L[i - 1], L[i]] = [L[i], L[i - 1]];
+    if (b.dataset.o === 'down') [L[i + 1], L[i]] = [L[i], L[i + 1]];
+    mark(); render();
+  });
+
+  /* save */
+  $('#save').addEventListener('click', async () => {
+    const bad = ['market', 'chicken'].flatMap(k => D[k]).find(o => !String(o.name).trim() || !(o.price > 0));
+    if (bad) { toast('في عرض ناقص: لازم اسم وسعر', true); return; }
+    const b = $('#save'); b.disabled = true; b.textContent = 'عم نحفظ…';
+    try {
+      const r = await post({ action: 'saveOffers', pass, data: D });
+      if (!r.ok) throw r.error || 'x';
+      dirty = false; $('#st').className = 'st'; $('#st b').textContent = 'كل شي محفوظ';
+      $('#stT').textContent = 'آخر حفظ: ' + new Date(r.updated).toLocaleString('ar-LB-u-nu-latn', { dateStyle: 'medium', timeStyle: 'short' });
+      try { localStorage.setItem('karim-offers', JSON.stringify(Object.assign({}, D, { updated: r.updated }))); } catch (e) {}
+      toast('تمّ! العروض صارت عالموقع');
+    } catch (err) { toast(err === 'pass' ? 'كلمة السر تغيّرت، فوت من جديد' : 'ما انحفظ. جرّب كمان مرة', true); }
+    b.disabled = false; b.textContent = 'احفظ وانشر';
+  });
+  addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+})();
+</script>
+</body>
+</html>

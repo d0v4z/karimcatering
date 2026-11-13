@@ -184,14 +184,17 @@ a[href^="tel"] svg{animation:phone 4s 2s infinite}
   <a class="m" href="./"><img src="assets/logo.jpg" alt="" style="width:24px;height:24px;border-radius:50%">كريم</a>
 </nav>
 
-<script src="assets/offers.js?v=1"></script>
+<script src="assets/offers.js?v=3"></script>
 <script>
 (() => {
-  renderOffers(document.getElementById('offersGrid'), KARIM_OFFERS.chicken, '81896302', 'مرحبا تتبيلة كريم! بدّي عرض: ');
-  document.getElementById('until').textContent = KARIM_OFFERS.until;
   document.querySelectorAll('[data-wa]').forEach(a => a.href = 'https://wa.me/961' + a.dataset.wa + '?text=' + encodeURIComponent(a.dataset.msg || 'مرحبا!'));
   requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('ld')));
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  loadOffers(D => {
+    renderOffers(document.getElementById('offersGrid'), D.chicken, '81896302', 'مرحبا تتبيلة كريم! بدّي عرض: ');
+    document.getElementById('until').textContent = D.until || '';
+    document.querySelectorAll('#offersGrid .rv').forEach(el => io.observe(el));
+  });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
 })();
 </script>

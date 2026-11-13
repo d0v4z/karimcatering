@@ -5,6 +5,7 @@ window.KARIM_OFFERS = {
      'https://www.tiktok.com/@abedulhadihalabi/video/7300000000000000000' */
   tiktokUser: 'abedulhadihalabi',
   videos: [
+    'https://www.tiktok.com/@abedulhadihalabi/video/7707677132926897414'
   ],
   until: 'لحدّ آخر الأسبوع أو نفاد الكمية',
   market: [
@@ -22,6 +23,24 @@ window.KARIM_OFFERS = {
     { name: 'دجاجة كاملة متبّلة', unit: 'جاهزة للشوي', price: 7, old: 8 }
   ]
 };
+
+/* videos we keep on the site itself (play straight away, no TikTok needed) */
+window.KARIM_LOCAL_VIDEOS = { '7707677132926897414': 'assets/offers/7707677132926897414' };
+window.KARIM_API = 'https://script.google.com/macros/s/AKfycbxMrnauhygeF3tNBQIfqOzswsorst8TrBaeCLRONR-kSYKVriG4E1DC8BYTYACu0NrItA/exec';
+
+/* what the admin saved wins over the defaults above. cb runs now, and again when fresh data arrives */
+window.loadOffers = cb => {
+  const D = window.KARIM_OFFERS, merge = x => Object.assign({}, D, x && (x.market || x.chicken || x.videos) ? x : {});
+  let cached = null; try { cached = JSON.parse(localStorage.getItem('karim-offers') || 'null'); } catch (e) {}
+  cb(merge(cached));
+  fetch(window.KARIM_API + '?offers=1').then(r => r.json()).then(x => {
+    if (!x || !(x.market || x.chicken || x.videos)) return;
+    if (cached && cached.updated === x.updated) return;
+    try { localStorage.setItem('karim-offers', JSON.stringify(x)); } catch (e) {}
+    cb(merge(x));
+  }).catch(() => {});
+};
+window.videoId = u => (String(u).match(/video\/(\d+)/) || [])[1] || (/^\d{10,}$/.test(String(u).trim()) ? String(u).trim() : null);
 
 /* draws the offer cards (no need to edit below) */
 window.renderOffers = (el, list, waNum, waPrefix) => {
